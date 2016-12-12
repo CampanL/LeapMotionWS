@@ -64,3 +64,20 @@ function random(min, max) {
 function getRandomColor() {
   return '#'+(~~(Math.random() * (1<<24))).toString(16);
 }
+
+Leap.loop({
+  hand: function(hand){
+
+  }
+})
+.use('transform', {
+  // move 20 cm back.
+  position: new THREE.Vector3(0,-75,-150),
+  quaternion: new THREE.Quaternion().setFromAxisAngle( new THREE.Vector3( 1, 0, 0 ), Math.PI / 4 ),
+  scale: 0.5
+})
+.use('boneHand', {
+      scene: scene,
+      arm: true
+
+    })
