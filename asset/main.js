@@ -24,6 +24,16 @@ for (var i = 0; i < nbCubes; i++) {
   }, 20, getRandomColor()) );
 }
 
+//initialisation du bouclier
+let geometry_shield = new THREE.CylinderGeometry( 100, 100, 2, 32 );
+let material_shield = new THREE.MeshBasicMaterial( {color: 00256} );
+material_shield.opacity=0.5;
+material_shield.transparent=true;
+geometry_shield.rotateX ( Math.PI/2 );
+
+let shield_r = new THREE.Mesh( geometry_shield, material_shield );
+let shield_l = new THREE.Mesh( geometry_shield, material_shield );
+
 function cube(pos, dimension, mcolor)
 {
   var geometry = new THREE.BoxGeometry( dimension, dimension, dimension );
@@ -45,20 +55,3 @@ function random(min, max) {
 function getRandomColor() {
   return '#'+(~~(Math.random() * (1<<24))).toString(16);
 }
-
-Leap.loop({
-  hand: function(hand){
-
-  }
-})
-.use('transform', {
-  // move 20 cm back.
-  position: new THREE.Vector3(0,-75,-150),
-  quaternion: new THREE.Quaternion().setFromAxisAngle( new THREE.Vector3( 1, 0, 0 ), Math.PI / 4 ),
-  scale: 0.5
-})
-.use('boneHand', {
-      scene: scene,
-      arm: true
-
-    })
