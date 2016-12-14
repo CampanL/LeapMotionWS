@@ -24,15 +24,33 @@ for (var i = 0; i < nbCubes; i++) {
   }, 20, getRandomColor()) );
 }
 
+// Initialisation : création des shots
+let shot_r = new Shot([0,0,1000]);
+let shot_sphere_r = new THREE.Mesh( shot_r.geometry, shot_r.material );
+shot_sphere_r.position.x = shot_r.coordonates[0];
+shot_sphere_r.position.y = shot_r.coordonates[1];
+shot_sphere_r.position.z = shot_r.coordonates[2];
+scene.add(shot_sphere_r); 
+
+let shot_l = new Shot([0,0,1000]);
+let shot_sphere_l = new THREE.Mesh( shot_l.geometry, shot_l.material );
+shot_sphere_l.position.x = shot_l.coordonates[0];
+shot_sphere_l.position.y = shot_l.coordonates[1];
+shot_sphere_l.position.z = shot_l.coordonates[2];
+scene.add(shot_sphere_l); 
+
 //initialisation du bouclier
-let geometry_shield = new THREE.CylinderGeometry( 100, 100, 2, 32 );
+let geometry_shield = new THREE.CylinderGeometry( 60, 60, 2, 32 );
 let material_shield = new THREE.MeshBasicMaterial( {color: 00256} );
 material_shield.opacity=0.5;
 material_shield.transparent=true;
+
 geometry_shield.rotateX ( Math.PI/2 );
 
 let shield_r = new THREE.Mesh( geometry_shield, material_shield );
+shield_r.scale.set(1,1.7,1);
 let shield_l = new THREE.Mesh( geometry_shield, material_shield );
+shield_l.scale.set(1,1.7,1);
 
 function cube(pos, dimension, mcolor)
 {
