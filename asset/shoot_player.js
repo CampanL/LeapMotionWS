@@ -1,9 +1,8 @@
-//
 function Shot(coordonates){
 	this.coordonates = coordonates || [0,0,0];
 	this.ready 		 = false;
 	this.size		 = 0.5;
-	this.speed 		 = -8;
+	this.speed 		 = -6;
 	this.grow_speed  = 0.04;
 	this.range       = -750;
 	this.geometry    = new THREE.SphereGeometry( 10, 40, 40 );

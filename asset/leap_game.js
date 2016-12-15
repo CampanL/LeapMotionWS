@@ -1,5 +1,5 @@
-var shot_vector_l=[0,0,0];
-var shot_vector_r=[0,0,0];
+/*var shot_vector_l=[0,0,0];
+var shot_vector_r=[0,0,0];*/
 Leap.loop( function(frame){
   
   if (!frame.valid) {
@@ -20,10 +20,10 @@ Leap.loop( function(frame){
 	let zPalm = hand.palmPosition[2];
 	let close = 0;
 	let type  = hand.type;
-	if (type=="right") {table_fingers=table_fingers_r; close=close_r; shot=shot_r; shot_sphere=shot_sphere_r}
- 		else if(type=="left"){table_fingers=table_fingers_l; close=close_l; shot=shot_l; shot_sphere=shot_sphere_l};
+	if (type=="right") {table_fingers=table_fingers_r; close=close_r; /*shot=shot_r; shot_sphere=shot_sphere_r*/}
+ 		else if(type=="left"){table_fingers=table_fingers_l; close=close_l; /*shot=shot_l; shot_sphere=shot_sphere_l*/};
   	hand.fingers.forEach(function(finger){
-  		//compte le nombre de doigths fermés
+  		//compte le nombre de doigts fermés
   		let xTip = finger.tipPosition[0];
 		let yTip = finger.tipPosition[1];
 		let zTip = finger.tipPosition[2];
@@ -39,7 +39,8 @@ Leap.loop( function(frame){
 
   		close+=table_fingers[i];
   	}
-  	//si 4 ou plus de doights sont fermés
+  	//si 4 ou plus de doigts sont fermés
+  	/*
   	if (close>=4 && !shot.shooted) {
   		scene.remove(shot_sphere);
   		shot.coordonates=hand.palmPosition;
@@ -68,15 +69,15 @@ Leap.loop( function(frame){
 		shot_sphere.position.y = shot.coordonates[1];
 		shot_sphere.position.z = shot.coordonates[2];
 		shot.size=0.5;
-  	}
+  	}*/
 
   	//_____________________________________________PARTIE SHIELD__________________________________________
   	normal = hand.palmNormal;
   	
 	let shield = {};
-	if (hand.type=="left") {shield=shield_l; shot_vector_l=hand.palmNormal;}
-  	else if (hand.type=="right") {shield=shield_r; shot_vector_r=hand.palmNormal;};
-  	if (normal[2]<=-0.7 && close<=1 && !shot.shooted) {
+	if (hand.type=="left") {shield=shield_l; /*shot_vector_l=hand.palmNormal;*/}
+  	else if (hand.type=="right") {shield=shield_r; /*shot_vector_r=hand.palmNormal;*/};
+  	if (normal[2]<=-0.7 && close<=1 /*&& !shot.shooted*/) {
   		scene.remove(shield_l);
 		shield.position.x=hand.palmPosition[0];
 		shield.position.y=hand.palmPosition[1];
@@ -101,7 +102,7 @@ Leap.loop( function(frame){
 	})
 .use('transform', {
   // move 20 cm back.
-  position: new THREE.Vector3(0,-75,-150),
+  position: new THREE.Vector3(0,-75,-350),
   quaternion: new THREE.Quaternion().setFromAxisAngle( new THREE.Vector3( 1, 0, 0 ), Math.PI / 4 ),
   scale: 0.5
 })

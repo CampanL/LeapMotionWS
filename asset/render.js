@@ -1,12 +1,11 @@
 var compteur = 0;
-
-var randx=0;
-var randy=0;
+var randx    = 0;
+var randy    = 0;
 
 function render() {
   requestAnimationFrame( render );
 
-  // Animation des cubes
+  // Animation des tirs ennemis
   for (var i = 0, cube; i < cubes.length; i++) {
     cube = cubes[i];
 
@@ -19,8 +18,8 @@ function render() {
     }
   }
   //bouge le shot r et vérifie la colision avec le fond
-  moove_shot(shot_l,shot_sphere_l,shot_vector_l);
-  moove_shot(shot_r,shot_sphere_r,shot_vector_r);
+  /*moove_shot(shot_l,shot_sphere_l,shot_vector_l);
+  moove_shot(shot_r,shot_sphere_r,shot_vector_r);*/
 
   //gestion des mobs
   for (var j=0, mob; j < mobs.length; j++)
@@ -51,8 +50,20 @@ function render() {
   {
     compteur = 0;
   }
+  
+  //collid cube/shield
+  for (var i = 0; i < cubes.length; i++) {
+    let cube = cubes[i];
+    if(isColid(shield_r,cube)){
+      scene.remove(cube);
+      //material_shield.color.setHex( 0x12395 );
+    }
+    if(isColid(shield_l,cube)){
+      scene.remove(cube);
+      //material_shield.color.setHex( 0x12395 );
+    }
+  }
   // Rendering...
-
   renderer.render( scene, camera );
 }
 render();

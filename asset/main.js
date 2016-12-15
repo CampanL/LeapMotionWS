@@ -17,7 +17,7 @@ scene.add( light );
 var cubes = [];
 
 // Initialisation : création des shots
-let shot_r = new Shot([0,0,1000]);
+/*let shot_r = new Shot([0,0,1000]);
 let shot_sphere_r = new THREE.Mesh( shot_r.geometry, shot_r.material );
 shot_sphere_r.position.x = shot_r.coordonates[0];
 shot_sphere_r.position.y = shot_r.coordonates[1];
@@ -29,7 +29,7 @@ let shot_sphere_l = new THREE.Mesh( shot_l.geometry, shot_l.material );
 shot_sphere_l.position.x = shot_l.coordonates[0];
 shot_sphere_l.position.y = shot_l.coordonates[1];
 shot_sphere_l.position.z = shot_l.coordonates[2];
-scene.add(shot_sphere_l); 
+scene.add(shot_sphere_l); */
 
 //initialisation du bouclier
 let geometry_shield = new THREE.CylinderGeometry( 60, 60, 2, 32 );
