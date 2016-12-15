@@ -41,7 +41,7 @@ scene.add(shot_sphere_l);
 
 //initialisation du bouclier
 let geometry_shield = new THREE.CylinderGeometry( 60, 60, 2, 32 );
-let material_shield = new THREE.MeshBasicMaterial( {color: 00256} );
+let material_shield = new THREE.MeshBasicMaterial( {color: 0x2C75FF} );
 material_shield.opacity=0.5;
 material_shield.transparent=true;
 

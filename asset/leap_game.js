@@ -1,3 +1,5 @@
+var shot_vector_l=[0,0,0];
+var shot_vector_r=[0,0,0];
 Leap.loop( function(frame){
   
   if (!frame.valid) {
@@ -21,6 +23,7 @@ Leap.loop( function(frame){
 	if (type=="right") {table_fingers=table_fingers_r; close=close_r; shot=shot_r; shot_sphere=shot_sphere_r}
  		else if(type=="left"){table_fingers=table_fingers_l; close=close_l; shot=shot_l; shot_sphere=shot_sphere_l};
   	hand.fingers.forEach(function(finger){
+  		//compte le nombre de doigths fermés
   		let xTip = finger.tipPosition[0];
 		let yTip = finger.tipPosition[1];
 		let zTip = finger.tipPosition[2];
@@ -37,18 +40,20 @@ Leap.loop( function(frame){
   		close+=table_fingers[i];
   	}
   	//si 4 ou plus de doights sont fermés
-  	if (close==5 && !shot.shooted) {
+  	if (close>=4 && !shot.shooted) {
   		scene.remove(shot_sphere);
   		shot.coordonates=hand.palmPosition;
   		shot_sphere.position.x = shot.coordonates[0];
 		shot_sphere.position.y = shot.coordonates[1];
 		shot_sphere.position.z = shot.coordonates[2];
+		//charge le tire
 		if (shot.size<3) {
-        	shot.size +=0.025;
+        	shot.size +=shot.grow_speed;
 
         }else{
    			shot.size=3;
         	shot.ready=true;
+        	shot.material.color.setHex( 0x2C75FF );
         }
         shot_sphere.scale.set(shot.size,shot.size,shot.size);
 		scene.add(shot_sphere);
@@ -57,7 +62,7 @@ Leap.loop( function(frame){
   	}else if(shot.ready && close<=1){
   		shot.shooted=true;
 
-  	}else if(!shot.ready && close<=1){
+  	}else if(!shot.ready){
   		shot.coordonates=[0,0,1000];
   		shot_sphere.position.x = shot.coordonates[0];
 		shot_sphere.position.y = shot.coordonates[1];
@@ -69,9 +74,9 @@ Leap.loop( function(frame){
   	normal = hand.palmNormal;
   	
 	let shield = {};
-	if (hand.type=="left") {shield=shield_l}
-  	else if (hand.type=="right") {shield=shield_r};
-  	if (normal[2]<=-0.7 && close<=1) {
+	if (hand.type=="left") {shield=shield_l; shot_vector_l=hand.palmNormal;}
+  	else if (hand.type=="right") {shield=shield_r; shot_vector_r=hand.palmNormal;};
+  	if (normal[2]<=-0.7 && close<=1 && !shot.shooted) {
   		scene.remove(shield_l);
 		shield.position.x=hand.palmPosition[0];
 		shield.position.y=hand.palmPosition[1];

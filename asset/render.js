@@ -1,5 +1,4 @@
 var compteur = 0;
-
 var randx = random(-2,2);
 var randy = random(-2,2);
 
@@ -15,28 +14,10 @@ function render() {
     if (cube.position.z > 50) {
       cube.position.z = -1000;
     }
-
-
   }
   //bouge le shot r et vérifie la colision avec le fond
-  if (shot_r.shooted) {
-    shot_sphere_r.position.z -=shot_r.speed;
-    if (shot_sphere_r.position.z < -1300) {
-      shot_r.shooted = false;
-      shot_r.ready = false;
-      shot_r.size=0.5;
-    }
-  }
-
-  //bouge le shot l et vérifie la colision avec le fond
-  if (shot_l.shooted) {
-    shot_sphere_l.position.z -=shot_l.speed;
-    if (shot_sphere_l.position.z < -1300) {
-      shot_l.shooted = false;
-      shot_l.ready = false;
-      shot_l.size=0.5;
-    }
-  }  
+  moove_shot(shot_l,shot_sphere_l,shot_vector_l);
+  moove_shot(shot_r,shot_sphere_r,shot_vector_r);
 
   //gestion des mobs
   for (var j=0, mob; j < mobs.length; j++)
@@ -63,6 +44,7 @@ function render() {
     compteur = 0;
   }
   // Rendering...
+
   renderer.render( scene, camera );
 }
 render();
