@@ -12,7 +12,7 @@ function render() {
 
     cube.position.z += 3;
     cube.position.x += (camera.position.x - cube.position.x)/200;
-    cube.position.y += (camera.position.y - cube.position.y)/200;
+    cube.position.y += (camera.position.y - cube.position.y)/100;
 
     if (cube.position.z > 20) {
       scene.remove(cube);
