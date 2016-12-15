@@ -15,14 +15,6 @@ scene.add( light );
 
 // Initialisation : création des cubes
 var cubes = [];
-const nbCubes = 20;
-for (var i = 0; i < nbCubes; i++) {
-  cubes.push( cube({
-    x : random(-150, 150),
-    y : random(-100, 100),
-    z : random(0, -1000)
-  }, 20, getRandomColor()) );
-}
 
 // Initialisation : création des shots
 let shot_r = new Shot([0,0,1000]);

@@ -1,12 +1,12 @@
 
 var mobs = [];
-const nbMob = 3;
+const nbMob = 1;
 
 
 for (var i = 0; i < nbMob; i++) {
   mobs.push( mob({
-    x : random(-350, 350),
-    y : random(-300, 300)
+    x : random(-150, 150),
+    y : random(-100, 100)
   }));
 }
 

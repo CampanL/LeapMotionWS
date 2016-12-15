@@ -1,7 +1,7 @@
 var compteur = 0;
 
-var randx = random(-2,2);
-var randy = random(-2,2);
+var randx=0;
+var randy=0;
 
 function render() {
   requestAnimationFrame( render );
@@ -11,9 +11,11 @@ function render() {
     cube = cubes[i];
 
     cube.position.z += 3;
+    cube.position.x += (camera.position.x - cube.position.x)/200;
+    cube.position.y += (camera.position.y - cube.position.y)/200;
 
-    if (cube.position.z > 50) {
-      cube.position.z = -1000;
+    if (cube.position.z > 20) {
+      scene.remove(cube);
     }
 
 
@@ -41,6 +43,13 @@ function render() {
   {
     mob = mobs[j];
 
+    if (compteur == 0) 
+    {
+      randx = random(-2,2);
+      randy = random(-2,2);
+      mob_shoot(mob);
+    }
+
     mob.position.x += randx;
     mob.position.y += randy;
     
@@ -53,11 +62,9 @@ function render() {
       randy = -randy;
     }
   }
-  compteur++
+  compteur++;
   if (compteur>100) 
   {
-    randx = random(-3,3);
-    randy = random(-3,3);
     compteur = 0;
   }
   // Rendering...
