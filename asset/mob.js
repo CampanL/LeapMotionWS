@@ -1,6 +1,6 @@
 
 var mobs = [];
-const nbMob = 1;
+const nbMob = 3;
 
 
 for (var i = 0; i < nbMob; i++) {
