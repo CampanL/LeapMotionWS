@@ -15,17 +15,19 @@ function render() {
   }
   //bouge le shot r et vérifie la colision avec le fond
   if (shot_r.shooted) {
-    shot_sphere_r.position.z -=9;
-    if (shot_sphere_r.position.z < -1000) {
+    shot_sphere_r.position.z -=shot_r.speed;
+    if (shot_sphere_r.position.z < -1300) {
       shot_r.shooted = false;
+      shot_r.size=0.5;
     }
   }
 
   //bouge le shot l et vérifie la colision avec le fond
   if (shot_l.shooted) {
-    shot_sphere_l.position.z -=9;
-    if (shot_sphere_l.position.z < -1000) {
+    shot_sphere_l.position.z -=shot_l.speed;
+    if (shot_sphere_l.position.z < -1300) {
       shot_l.shooted = false;
+      shot_l.size=0.5;
     }
   }
   // Rendering...

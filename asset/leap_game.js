@@ -43,8 +43,14 @@ Leap.loop( function(frame){
   		shot_sphere.position.x = shot.coordonates[0];
 		shot_sphere.position.y = shot.coordonates[1];
 		shot_sphere.position.z = shot.coordonates[2];
-		shot_sphere			   = shot.grow(shot_sphere);
-		shot.ready			   = true;
+		if (shot.size<3) {
+        	shot.size +=0.025;
+
+        }else{
+   			shot.size=3;
+        	shot.ready=true;
+        }
+        shot_sphere.scale.set(shot.size,shot.size,shot.size);
 		scene.add(shot_sphere);
   	}else if(close>=5){
   		close=5;
@@ -61,8 +67,6 @@ Leap.loop( function(frame){
   	else if (hand.type=="right") {shield=shield_r};
   	if (normal[2]<=-0.7 && close<=1) {
   		scene.remove(shield_l);
-  		shot.size    = 0.5;
-     	shot_sphere.scale.set(shot.size,shot.size,shot.size)
 		shield.position.x=hand.palmPosition[0];
 		shield.position.y=hand.palmPosition[1];
 		shield.position.z=hand.palmPosition[2];
