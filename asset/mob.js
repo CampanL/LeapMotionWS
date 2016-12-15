@@ -12,7 +12,7 @@ for (var i = 0; i < nbMob; i++) {
 
 function mob(pos)
 {
-	var geometry = new THREE.SphereGeometry( 20, 32, 32 );
+	var geometry = new THREE.SphereGeometry( 25, 32, 32 );
 	var material = new THREE.MeshLambertMaterial( {color: 0xff0000} );
 	var sphere = new THREE.Mesh( geometry, material );
 	scene.add( sphere );
