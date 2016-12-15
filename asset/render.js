@@ -18,6 +18,7 @@ function render() {
     shot_sphere_r.position.z -=shot_r.speed;
     if (shot_sphere_r.position.z < -1300) {
       shot_r.shooted = false;
+      shot_r.ready = false;
       shot_r.size=0.5;
     }
   }
@@ -27,6 +28,7 @@ function render() {
     shot_sphere_l.position.z -=shot_l.speed;
     if (shot_sphere_l.position.z < -1300) {
       shot_l.shooted = false;
+      shot_l.ready = false;
       shot_l.size=0.5;
     }
   }

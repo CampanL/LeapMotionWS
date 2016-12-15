@@ -57,6 +57,12 @@ Leap.loop( function(frame){
   	}else if(shot.ready && close<=1){
   		shot.shooted=true;
 
+  	}else if(!shot.ready && close<=1){
+  		shot.coordonates=[0,0,1000];
+  		shot_sphere.position.x = shot.coordonates[0];
+		shot_sphere.position.y = shot.coordonates[1];
+		shot_sphere.position.z = shot.coordonates[2];
+		shot.size=0.5;
   	}
 
   	//_____________________________________________PARTIE SHIELD__________________________________________
