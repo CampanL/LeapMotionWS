@@ -1,19 +1,21 @@
-function isColid(elem1,elem2){
+window.test = false;
+function isColid(shield,cube){
 	let colid= false;
-	let coo1=elem1.position;
-	let coo2=elem2.position;
-	let size1=elem1.geometry.parameters;
-	let size2=elem2.geometry.parameters;
-	/*console.log(coo1);
-	console.log(coo2);
-	console.log(size1);
-	console.log(size2);*/
-	//a améliorer
-	if (coo1.x >= coo2.x+50  &&
-        coo1.y >= coo2.y+100 &&
-        coo1.z >= coo2.z+5) 
+
+	let coo_shield=shield.position;
+	let coo_cube=cube.position;
+
+ 	let collideZ = (cube.position.z > shield.position.z && cube.position.z < shield.position.z + 10);
+ 	let collideX = (cube.position.x > shield.position.x - 60 && cube.position.x < shield.position.x + 60);
+ 	let collideY = (cube.position.y > shield.position.y - 102 && cube.position.y < shield.position.y + 102);
+
+ 	// !window.test && console.log(shield.geometry.parameters);
+ 	// window.test = true;
+
+	if (collideZ && collideX && collideY)
 	{
-		colid= true;
+		colid = true;
 	}
+
 	return colid;
 }
