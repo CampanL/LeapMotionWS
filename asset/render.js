@@ -4,7 +4,7 @@ var randy    = 0;
 var HandTimer;
 var inter_shoot=100;
 var speed = 3;
-
+var score = 0;
 
 function render() {
   requestAnimationFrame( render );
@@ -51,6 +51,7 @@ function render() {
       }
     }
     //bouge le shot r et vérifie la colision avec le fond
+    /*
     if (shot_r.shooted) {
       shot_sphere_r.position.z -=shot_r.speed;
       if (shot_sphere_r.position.z < -1300) {
@@ -68,7 +69,7 @@ function render() {
         shot_l.ready = false;
         shot_l.size=0.5;
       }
-    }  
+    }  */
 
     //gestion des mobs
     for (var j=0, mob; j < mobs.length; j++)
@@ -103,13 +104,13 @@ function render() {
     }
   }
 
+  //collid cube/shield
   if (Date.now() - HandTimer < 200) {
     material_shield.color.setHex( 0x2FBB0E ); // attrapé !
   } else {
     material_shield.color.setHex( 0x2C75FF );
   }
   
-  //collid cube/shield
   for (var i = 0; i < cubes.length; i++) {
     let cube = cubes[i];
     if(isColid(shield,cube)){
