@@ -47,7 +47,7 @@ function render() {
     {
       cube = cubes[i];
 
-      cube.position.z += 3;
+      cube.position.z += speed;
       cube.position.x += (camera.position.x - cube.position.x)/200;
       cube.position.y += (camera.position.y - cube.position.y)/100;
 
@@ -78,11 +78,14 @@ function render() {
     {
       mob = mobs[j];
 
-      if (compteur == 0) 
+      if (compteur == inter_shoot) 
       {
-        randx = random(-2,2);
-        randy = random(-2,2);
         mob_shoot(mob);
+      }
+      if (compteur==100) 
+      {
+        randx = random(-3,3);
+        randy = random(-3,3);
       }
 
       mob.position.x += randx;
@@ -124,6 +127,14 @@ function render() {
       cubes.splice(i,1);
       HandTimer = Date.now();
       score++;
+      if (score%5==0) 
+      {
+        if (inter_shoot>50) 
+        {
+          inter_shoot -=10;
+          speed +=1;
+        }
+      }
     }
     if (cube.position.z > 20) {
       scene.remove(cube);
