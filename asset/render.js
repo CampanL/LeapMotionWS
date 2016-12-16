@@ -18,7 +18,7 @@ function render() {
   if (tuto==true) 
   {
     mobs[0].position.x=200;
-    mobs[0].position.y=250;
+    mobs[0].position.y=100;
     compteur++;
     if (compteur>150) 
     {
@@ -80,9 +80,12 @@ function render() {
 
       if (compteur == inter_shoot) 
       {
-        randx = random(-2,2);
-        randy = random(-2,2);
         mob_shoot(mob);
+      }
+      if (compteur==100) 
+      {
+        randx = random(-3,3);
+        randy = random(-3,3);
       }
 
       mob.position.x += randx;
@@ -102,14 +105,6 @@ function render() {
     if (compteur>100) 
     {
       compteur = 0;
-    }
-    if (score%5) 
-    {
-      if (inter_shoot>50) 
-      {
-        inter_shoot -=3;
-        speed +=0.5;
-      }
     }
   }
 
@@ -132,6 +127,14 @@ function render() {
       cubes.splice(i,1);
       HandTimer = Date.now();
       score++;
+      if (score%5==0) 
+      {
+        if (inter_shoot>50) 
+        {
+          inter_shoot -=10;
+          speed +=1;
+        }
+      }
     }
     if (cube.position.z > 20) {
       scene.remove(cube);
