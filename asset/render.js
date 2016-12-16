@@ -2,12 +2,17 @@ var compteur = 0;
 var randx    = 0;
 var randy    = 0;
 var HandTimer;
+var ErrorTimer;
 var inter_shoot=100;
 var speed = 3;
 var score = 0;
+var erreur = 10;
 
 function render() {
   requestAnimationFrame( render );
+
+  $(".score_bar .score").html("SCORE : "+score);
+  $(".score_bar .erreur").html("ERREUR RESTANTE : "+erreur);
 
   //affichage du tutoriel
   if (tuto==true) 
@@ -46,9 +51,6 @@ function render() {
       cube.position.x += (camera.position.x - cube.position.x)/200;
       cube.position.y += (camera.position.y - cube.position.y)/100;
 
-      if (cube.position.z > 20) {
-        scene.remove(cube);
-      }
     }
     //bouge le shot r et vérifie la colision avec le fond
     /*
@@ -94,7 +96,6 @@ function render() {
       {
         randy = -randy;
       }
-        console.log(mob.position.y);
     }
     compteur++;
 
@@ -104,19 +105,38 @@ function render() {
     }
   }
 
-  //collid cube/shield
+  //changement de couleur en fonction des evenement
   if (Date.now() - HandTimer < 200) {
     material_shield.color.setHex( 0x2FBB0E ); // attrapé !
-  } else {
+  }
+  else if (Date.now() - ErrorTimer < 200){
+    material_shield.color.setHex( 0xd62d20 );
+  }
+  else{
     material_shield.color.setHex( 0x2C75FF );
   }
-  
+
+  //collid cube/shield
   for (var i = 0; i < cubes.length; i++) {
     let cube = cubes[i];
     if(isColid(shield,cube)){
       scene.remove(cube);
+      cubes.splice(i,1);
       HandTimer = Date.now();
+      score++;
     }
+    if (cube.position.z > 20) {
+      scene.remove(cube);
+      cubes.splice(i,1);
+      ErrorTimer = Date.now();
+      erreur--;
+    }
+  }
+
+  //gestion du score
+  if (score==1) {
+    scene.remove(sprite);
+    tuto=false;
   }
   // Rendering...
   renderer.render( scene, camera );
