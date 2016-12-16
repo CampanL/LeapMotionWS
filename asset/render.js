@@ -47,7 +47,7 @@ function render() {
     {
       cube = cubes[i];
 
-      cube.position.z += 3;
+      cube.position.z += speed;
       cube.position.x += (camera.position.x - cube.position.x)/200;
       cube.position.y += (camera.position.y - cube.position.y)/100;
 
@@ -78,7 +78,7 @@ function render() {
     {
       mob = mobs[j];
 
-      if (compteur == 0) 
+      if (compteur == intershoot) 
       {
         randx = random(-2,2);
         randy = random(-2,2);
@@ -102,6 +102,14 @@ function render() {
     if (compteur>100) 
     {
       compteur = 0;
+    }
+    if (score%5) 
+    {
+      if (intershoot>50) 
+      {
+        intershoot -=3;
+        speed +=0.5;
+      }
     }
   }
 
