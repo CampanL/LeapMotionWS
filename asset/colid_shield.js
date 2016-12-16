@@ -9,9 +9,6 @@ function isColid(shield,cube){
  	let collideX = (cube.position.x > shield.position.x - 60 && cube.position.x < shield.position.x + 60);
  	let collideY = (cube.position.y > shield.position.y - 102 && cube.position.y < shield.position.y + 102);
 
- 	// !window.test && console.log(shield.geometry.parameters);
- 	// window.test = true;
-
 	if (collideZ && collideX && collideY)
 	{
 		colid = true;

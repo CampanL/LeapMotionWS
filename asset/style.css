@@ -2,6 +2,7 @@ body
 {
 	margin: 0;
 	overflow: hidden;
+	background-color: black;
 }
 canvas
 {
@@ -21,3 +22,17 @@ canvas
 	color: #d62d20;
 	padding-top: 2px;
 }
+.score_finale{
+	text-align: center;
+	color: #2FBB0E;
+	padding-top: 100px;
+	font-size: 60px;
+}
+.btn_retour{
+	font-size: 30px;
+	text-align: center;
+}
+.retour{
+	color: #ddd;
+}
+

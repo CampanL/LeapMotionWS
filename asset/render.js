@@ -18,7 +18,7 @@ function render() {
   if (tuto==true) 
   {
     mobs[0].position.x=200;
-    mobs[0].position.y=250;
+    mobs[0].position.y=100;
     compteur++;
     if (compteur>150) 
     {
@@ -137,6 +137,11 @@ function render() {
   if (score==1) {
     scene.remove(sprite);
     tuto=false;
+  }
+  if (erreur<=0) {
+    score = parseInt(score);
+    localStorage.setItem("score",score);
+    document.location.href = "loose.html";
   }
   // Rendering...
   renderer.render( scene, camera );
