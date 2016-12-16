@@ -1,5 +1,7 @@
 var scene = new THREE.Scene();
 
+var tuto = true;
+
 var camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 1000 );
 camera.position.z = 100;
 scene.add(camera);
@@ -9,7 +11,7 @@ renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
 
 // Lumière
-var light = new THREE.PointLight( 0xffffff, 1, 1000 );
+var light = new THREE.PointLight( 0xffffff, 2, 1500 );
 light.position.set( 50, 50, 50 );
 scene.add( light );
 
