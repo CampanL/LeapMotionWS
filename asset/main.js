@@ -11,7 +11,7 @@ renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
 
 // Lumière
-var light = new THREE.PointLight( 0xffffff, 2, 1500 );
+var light = new THREE.PointLight( 0xffffff, 1, 1500 );
 light.position.set( 50, 50, 50 );
 scene.add( light );
 
