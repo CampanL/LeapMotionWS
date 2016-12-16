@@ -1,3 +1,7 @@
+var MyMusic = new Audio('asset/audio/music.mp3');
+MyMusic.loop = true;
+MyMusic.play();
+
 var scene = new THREE.Scene();
 
 var tuto = true;
