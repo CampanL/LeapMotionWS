@@ -7,6 +7,7 @@ var inter_shoot=100;
 var speed = 3;
 var score = 0;
 var erreur = 10;
+var lvl = 1;
 
 function render() {
   requestAnimationFrame( render );
@@ -34,9 +35,6 @@ function render() {
       cube.position.x += (camera.position.x - cube.position.x)/200;
       cube.position.y += (camera.position.y - cube.position.y)/100;
 
-      if (cube.position.z > 20) {
-        scene.remove(cube);
-      }
     }
 
   }else
@@ -48,8 +46,8 @@ function render() {
       cube = cubes[i];
 
       cube.position.z += speed;
-      cube.position.x += (camera.position.x - cube.position.x)/200;
-      cube.position.y += (camera.position.y - cube.position.y)/100;
+      cube.position.x += (camera.position.x - cube.position.x)/(200/lvl);
+      cube.position.y += (camera.position.y - cube.position.y)/(100/(lvl)/2);
 
     }
     //bouge le shot r et vérifie la colision avec le fond
@@ -132,15 +130,18 @@ function render() {
         if (inter_shoot>50) 
         {
           inter_shoot -=10;
-          speed +=1;
         }
+          speed +=2;
+          lvl+=0.5;
       }
     }
     if (cube.position.z > 20) {
       scene.remove(cube);
       cubes.splice(i,1);
       ErrorTimer = Date.now();
-      erreur--;
+      if(!tuto){
+        erreur--;
+      }
     }
   }
 

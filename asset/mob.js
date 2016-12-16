@@ -13,7 +13,6 @@ function mob(pos)
 	var geometry = new THREE.SphereGeometry( 25, 32, 32 );
 	var material = new THREE.MeshLambertMaterial( {color: 0x000000} );
 	var sphere = new THREE.Mesh( geometry, material );
-	scene.add( sphere );
 
 	sphere.position.x=pos.x;
 	sphere.position.y=pos.y;

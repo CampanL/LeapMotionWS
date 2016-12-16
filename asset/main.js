@@ -53,6 +53,7 @@ function cube(pos, dimension, mcolor)
   var geometry = new THREE.BoxGeometry( dimension, dimension, dimension );
   var material = new THREE.MeshLambertMaterial( { color: mcolor } );
   var cube = new THREE.Mesh( geometry, material );
+
   scene.add( cube );
 
   cube.position.x = pos.x;
