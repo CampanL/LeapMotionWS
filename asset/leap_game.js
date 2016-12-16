@@ -8,20 +8,18 @@ Leap.loop( function(frame){
 
   //_____________________________________________PARTIE SHOOT__________________________________________
   //Gérer le tire du joueur
-  let table_fingers_r = [];
-  let table_fingers_l = [];
+  let table_fingers = [];
 
   //nb de doight fermés
-  let close_r = 0;
-  let close_l = 0;
+  let close = 0;
+
   frame.hands.forEach(function(hand) {
   	let xPalm = hand.palmPosition[0];
 	let yPalm = hand.palmPosition[1];
 	let zPalm = hand.palmPosition[2];
 	let close = 0;
 	let type  = hand.type;
-	if (type=="right") {table_fingers=table_fingers_r; close=close_r; /*shot=shot_r; shot_sphere=shot_sphere_r*/}
- 		else if(type=="left"){table_fingers=table_fingers_l; close=close_l; /*shot=shot_l; shot_sphere=shot_sphere_l*/};
+
   	hand.fingers.forEach(function(finger){
   		//compte le nombre de doigts fermés
   		let xTip = finger.tipPosition[0];
@@ -73,12 +71,9 @@ Leap.loop( function(frame){
 
   	//_____________________________________________PARTIE SHIELD__________________________________________
   	normal = hand.palmNormal;
-  	
-	let shield = {};
-	if (hand.type=="left") {shield=shield_l; /*shot_vector_l=hand.palmNormal;*/}
-  	else if (hand.type=="right") {shield=shield_r; /*shot_vector_r=hand.palmNormal;*/};
+
   	if (normal[2]<=-0.7 && close<=1 /*&& !shot.shooted*/) {
-  		scene.remove(shield_l);
+  		scene.remove(shield);
 		shield.position.x=hand.palmPosition[0];
 		shield.position.y=hand.palmPosition[1];
 		shield.position.z=hand.palmPosition[2];
@@ -93,18 +88,15 @@ Leap.loop( function(frame){
 }).on('handLost',
     function(hand){
     	//cache le bouclier quand la main disparait
-    	let shield = {};
-  		if (hand.type=="left") {shield=shield_l}
-  		else if (hand.type=="right") {shield=shield_r};
 	  	shield.position.x=0;
 		shield.position.y=0;
 		shield.position.z=-1000;
 	})
 .use('transform', {
   // move 20 cm back.
-  position: new THREE.Vector3(0,-75,-350),
+  position: new THREE.Vector3(0,-50,-300),
   quaternion: new THREE.Quaternion().setFromAxisAngle( new THREE.Vector3( 1, 0, 0 ), Math.PI / 4 ),
-  scale: 0.5
+  scale: 0.4
 })
 .use('boneHand', {
       scene: scene,

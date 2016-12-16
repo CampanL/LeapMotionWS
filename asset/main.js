@@ -39,10 +39,8 @@ material_shield.transparent=true;
 
 geometry_shield.rotateX ( Math.PI/2 );
 
-let shield_r = new THREE.Mesh( geometry_shield, material_shield );
-shield_r.scale.set(1,1.7,1);
-let shield_l = new THREE.Mesh( geometry_shield, material_shield );
-shield_l.scale.set(1,1.7,1);
+let shield = new THREE.Mesh( geometry_shield, material_shield );
+shield.scale.set(1,1.7,1);
 
 function cube(pos, dimension, mcolor)
 {

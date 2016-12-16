@@ -1,6 +1,7 @@
 var compteur = 0;
 var randx    = 0;
 var randy    = 0;
+var HandTimer;
 
 function render() {
   requestAnimationFrame( render );
@@ -50,17 +51,20 @@ function render() {
   {
     compteur = 0;
   }
+
+  if (Date.now() - HandTimer < 200) {
+    material_shield.color.setHex( 0x2FBB0E ); // attrapé !
+  } else {
+    material_shield.color.setHex( 0x2C75FF );
+  }
   
   //collid cube/shield
   for (var i = 0; i < cubes.length; i++) {
     let cube = cubes[i];
-    if(isColid(shield_r,cube)){
+    if(isColid(shield,cube)){
       scene.remove(cube);
-      //material_shield.color.setHex( 0x12395 );
-    }
-    if(isColid(shield_l,cube)){
-      scene.remove(cube);
-      //material_shield.color.setHex( 0x12395 );
+      HandTimer = Date.now();
+
     }
   }
   // Rendering...
