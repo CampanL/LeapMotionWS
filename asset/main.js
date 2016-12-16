@@ -1,4 +1,4 @@
-var MyMusic = new Audio('asset/audio/music.mp3')
+var MyMusic = new Audio('asset/audio/music.mp3');
 MyMusic.loop = true;
 MyMusic.play();
 
