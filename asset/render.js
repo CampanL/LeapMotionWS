@@ -78,7 +78,7 @@ function render() {
     {
       mob = mobs[j];
 
-      if (compteur == intershoot) 
+      if (compteur == inter_shoot) 
       {
         randx = random(-2,2);
         randy = random(-2,2);
@@ -105,9 +105,9 @@ function render() {
     }
     if (score%5) 
     {
-      if (intershoot>50) 
+      if (inter_shoot>50) 
       {
-        intershoot -=3;
+        inter_shoot -=3;
         speed +=0.5;
       }
     }
